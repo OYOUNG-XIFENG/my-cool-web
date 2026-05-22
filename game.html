@@ -25,39 +25,114 @@
         }
 
         h1 {
-            color: #e2e8f0;
+            color: #10b981;
             font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .best-score {
+            color: #fbbf24;
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .best-score span {
+            margin: 0 8px;
+        }
+
+        .new-record {
+            color: #f472b6;
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .difficulty-selection {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
             margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(148, 163, 184, 0.8), 0 0 20px rgba(148, 163, 184, 0.4);
+        }
+
+        .difficulty-btn {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn.easy {
+            background-color: #10b981;
+        }
+
+        .difficulty-btn.easy:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+        }
+
+        .difficulty-btn.medium {
+            background-color: #f59e0b;
+        }
+
+        .difficulty-btn.medium:hover {
+            background-color: #d97706;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+        }
+
+        .difficulty-btn.hard {
+            background-color: #ef4444;
+        }
+
+        .difficulty-btn.hard:hover {
+            background-color: #dc2626;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
         }
 
         .game-container {
             text-align: center;
+            display: none;
+        }
+
+        .game-container.active {
+            display: block;
         }
 
         .input-group {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: center;
             margin-bottom: 24px;
         }
 
         input[type="number"] {
-            width: 150px;
+            width: 200px;
+            height: 50px;
             padding: 12px 20px;
-            font-size: 24px;
-            background-color: rgba(30, 41, 59, 0.8);
-            border: 2px solid rgba(148, 163, 184, 0.3);
+            font-size: 18px;
+            background-color: rgba(30, 41, 59, 0.9);
+            border: 2px solid rgba(16, 185, 129, 0.4);
             color: #e2e8f0;
             text-align: center;
             outline: none;
-            border-radius: 12px;
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
         input[type="number"]:focus {
-            border-color: rgba(59, 130, 246, 0.8);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
         }
 
         input[type="number"]::-webkit-inner-spin-button,
@@ -66,25 +141,26 @@
             margin: 0;
         }
 
-        button {
-            padding: 12px 32px;
-            font-size: 20px;
-            background-color: rgba(59, 130, 246, 0.8);
-            color: #e2e8f0;
+        .guess-btn {
+            width: 120px;
+            height: 50px;
+            font-size: 18px;
+            background-color: #10b981;
+            color: #ffffff;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            border-radius: 12px;
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
-        button:hover:not(:disabled) {
-            background-color: rgba(59, 130, 246, 1);
+        .guess-btn:hover:not(:disabled) {
+            background-color: #059669;
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
         }
 
-        button:disabled {
+        .guess-btn:disabled {
             background-color: #475569;
             color: #94a3b8;
             cursor: not-allowed;
@@ -95,12 +171,12 @@
         #message {
             font-size: 24px;
             font-weight: bold;
-            min-height: 36px;
-            margin-bottom: 20px;
+            min-height: 40px;
+            margin-bottom: 16px;
         }
 
         #message.too-high {
-            color: #f87171;
+            color: #f97316;
         }
 
         #message.too-low {
@@ -112,9 +188,52 @@
             text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
         }
 
-        #attempts {
+        #message.game-over {
+            color: #ef4444;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            font-size: 16px;
             color: #e2e8f0;
+        }
+
+        .stat-value {
+            color: #f87171;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .guessed-list {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            min-height: 24px;
+        }
+
+        .play-again-btn {
+            padding: 14px 40px;
             font-size: 18px;
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .play-again-btn:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
         }
 
         .back-btn {
@@ -135,28 +254,142 @@
             background: rgba(148, 163, 184, 0.2);
             transform: scale(1.05);
         }
+
+        .confetti {
+            position: fixed;
+            top: -10px;
+            width: 10px;
+            height: 20px;
+            animation: fall linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .difficulty-selection {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .difficulty-btn {
+                padding: 14px 28px;
+                font-size: 16px;
+            }
+
+            input[type="number"] {
+                width: 160px;
+                height: 45px;
+                font-size: 16px;
+            }
+
+            .guess-btn {
+                width: 100px;
+                height: 45px;
+                font-size: 16px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-btn">← 返回首页</a>
     <h1>猜数字游戏</h1>
-    <div class="game-container">
+    
+    <div class="best-score" id="bestScore">
+        最佳成绩：<span class="easy">简单(--次)</span> | <span class="medium">中等(--次)</span> | <span class="hard">困难(--次)</span>
+    </div>
+
+    <div class="difficulty-selection" id="difficultySelection">
+        <button class="difficulty-btn easy" onclick="startGame('easy')">简单模式<br><small>1-50 / 10次</small></button>
+        <button class="difficulty-btn medium" onclick="startGame('medium')">中等模式<br><small>1-100 / 7次</small></button>
+        <button class="difficulty-btn hard" onclick="startGame('hard')">困难模式<br><small>1-200 / 5次</small></button>
+    </div>
+
+    <div class="game-container" id="gameContainer">
         <div class="input-group">
-            <input type="number" id="guessInput" min="1" max="100" placeholder="1-100">
-            <button id="guessBtn">猜一下</button>
+            <input type="number" id="guessInput" min="1" placeholder="输入数字">
+            <button class="guess-btn" id="guessBtn">猜一下</button>
         </div>
         <div id="message"></div>
-        <div id="attempts">猜的次数：0</div>
+        <div class="stats">
+            <div class="stat-item">剩余次数：<span class="stat-value" id="remaining">7</span></div>
+        </div>
+        <div class="guessed-list" id="guessedList">已猜过：</div>
     </div>
 
     <script>
         let secretNumber;
         let attempts = 0;
+        let maxAttempts = 7;
+        let maxNumber = 100;
+        let currentDifficulty = 'medium';
+        let guessedNumbers = [];
+        let gameOver = false;
 
-        function initGame() {
-            secretNumber = Math.floor(Math.random() * 100) + 1;
+        function loadBestScores() {
+            const scores = {
+                easy: localStorage.getItem('guessGame_easy') || '--',
+                medium: localStorage.getItem('guessGame_medium') || '--',
+                hard: localStorage.getItem('guessGame_hard') || '--'
+            };
+            document.querySelector('.best-score .easy').textContent = `简单(${scores.easy}次)`;
+            document.querySelector('.best-score .medium').textContent = `中等(${scores.medium}次)`;
+            document.querySelector('.best-score .hard').textContent = `困难(${scores.hard}次)`;
+        }
+
+        function saveBestScore(difficulty, score) {
+            const key = `guessGame_${difficulty}`;
+            const current = localStorage.getItem(key);
+            if (current === null || score < parseInt(current)) {
+                localStorage.setItem(key, score);
+                return true;
+            }
+            return false;
+        }
+
+        function startGame(difficulty) {
+            currentDifficulty = difficulty;
+            document.getElementById('difficultySelection').style.display = 'none';
+            document.getElementById('gameContainer').classList.add('active');
+            
+            switch(difficulty) {
+                case 'easy':
+                    maxNumber = 50;
+                    maxAttempts = 10;
+                    break;
+                case 'medium':
+                    maxNumber = 100;
+                    maxAttempts = 7;
+                    break;
+                case 'hard':
+                    maxNumber = 200;
+                    maxAttempts = 5;
+                    break;
+            }
+            
+            secretNumber = Math.floor(Math.random() * maxNumber) + 1;
             attempts = 0;
-            document.getElementById('attempts').textContent = `猜的次数：${attempts}`;
+            guessedNumbers = [];
+            gameOver = false;
+            
+            document.getElementById('guessInput').max = maxNumber;
+            document.getElementById('guessInput').placeholder = `1-${maxNumber}`;
+            document.getElementById('remaining').textContent = maxAttempts;
+            document.getElementById('guessedList').textContent = '已猜过：';
             document.getElementById('message').textContent = '';
             document.getElementById('message').className = '';
             document.getElementById('guessBtn').disabled = false;
@@ -165,34 +398,95 @@
         }
 
         function checkGuess() {
+            if (gameOver) return;
+            
             const input = document.getElementById('guessInput');
             const guess = parseInt(input.value);
             
-            if (isNaN(guess) || guess < 1 || guess > 100) {
-                alert('请输入1到100之间的数字');
+            if (isNaN(guess) || guess < 1 || guess > maxNumber) {
+                alert(`请输入1到${maxNumber}之间的数字`);
                 input.focus();
                 return;
             }
 
             attempts++;
-            document.getElementById('attempts').textContent = `猜的次数：${attempts}`;
+            guessedNumbers.push(guess);
+            const remaining = maxAttempts - attempts;
+            
+            document.getElementById('remaining').textContent = remaining;
+            document.getElementById('guessedList').textContent = '已猜过：' + guessedNumbers.join(', ');
 
             const message = document.getElementById('message');
             
             if (guess > secretNumber) {
-                message.textContent = '太大了，再小点';
+                message.textContent = '📉 太大了！再小一点';
                 message.className = 'too-high';
             } else if (guess < secretNumber) {
-                message.textContent = '太小了，再大点';
+                message.textContent = '📈 太小了！再大一点';
                 message.className = 'too-low';
             } else {
-                message.textContent = '恭喜你！猜对了！';
+                message.textContent = `🎉 恭喜你猜对了！答案是 ${secretNumber}，你用了 ${attempts} 次`;
                 message.className = 'correct';
                 document.getElementById('guessBtn').disabled = true;
+                gameOver = true;
+                
+                const isNewRecord = saveBestScore(currentDifficulty, attempts);
+                if (isNewRecord) {
+                    message.textContent += ' 🏆 新纪录！';
+                    message.className = 'correct new-record';
+                }
+                
+                createConfetti();
+                showPlayAgainButton();
+                loadBestScores();
+            }
+
+            if (remaining === 0 && !gameOver) {
+                message.textContent = `😢 游戏结束！正确答案是 ${secretNumber}`;
+                message.className = 'game-over';
+                document.getElementById('guessBtn').disabled = true;
+                gameOver = true;
+                showPlayAgainButton();
             }
 
             input.value = '';
             input.focus();
+        }
+
+        function showPlayAgainButton() {
+            const existingBtn = document.querySelector('.play-again-btn');
+            if (existingBtn) existingBtn.remove();
+            
+            const btn = document.createElement('button');
+            btn.className = 'play-again-btn';
+            btn.textContent = gameOver && !document.getElementById('message').classList.contains('correct') ? '再来一局' : '再玩一次';
+            btn.onclick = resetGame;
+            document.getElementById('gameContainer').appendChild(btn);
+        }
+
+        function resetGame() {
+            const existingBtn = document.querySelector('.play-again-btn');
+            if (existingBtn) existingBtn.remove();
+            
+            document.getElementById('difficultySelection').style.display = 'flex';
+            document.getElementById('gameContainer').classList.remove('active');
+            loadBestScores();
+        }
+
+        function createConfetti() {
+            const colors = ['#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
         }
 
         document.getElementById('guessBtn').addEventListener('click', checkGuess);
@@ -203,7 +497,7 @@
             }
         });
 
-        window.addEventListener('load', initGame);
+        window.addEventListener('load', loadBestScores);
     </script>
 </body>
 </html>

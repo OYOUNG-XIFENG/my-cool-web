@@ -70,14 +70,69 @@
             font-size: 16px;
             color: #e2e8f0;
             line-height: 1.8;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             padding: 0 10px;
+        }
+
+        .skills-section {
+            margin-bottom: 28px;
+        }
+
+        .skills-title {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-tag:nth-child(6n+1) {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .skill-tag:nth-child(6n+2) {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .skill-tag:nth-child(6n+3) {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .skill-tag:nth-child(6n+4) {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .skill-tag:nth-child(6n+5) {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+        }
+
+        .skill-tag:nth-child(6n+6) {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
         }
 
         .social-buttons {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 15px;
         }
 
         .social-btn {
@@ -90,7 +145,7 @@
             font-size: 20px;
             color: #e2e8f0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: none;
         }
 
@@ -99,9 +154,8 @@
         }
 
         .social-btn.wechat:hover {
-            background: linear-gradient(135deg, #08d96c, #07c160);
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(7, 193, 96, 0.4);
+            transform: scale(1.2) rotate(360deg);
+            filter: drop-shadow(0 0 10px #07c160);
         }
 
         .social-btn.weibo {
@@ -109,9 +163,8 @@
         }
 
         .social-btn.weibo:hover {
-            background: linear-gradient(135deg, #f72739, #e6162d);
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(230, 22, 45, 0.4);
+            transform: scale(1.2) rotate(360deg);
+            filter: drop-shadow(0 0 10px #e6162d);
         }
 
         .social-btn.github {
@@ -119,9 +172,8 @@
         }
 
         .social-btn.github:hover {
-            background: linear-gradient(135deg, #4a5568, #374151);
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(55, 65, 81, 0.4);
+            transform: scale(1.2) rotate(360deg);
+            filter: drop-shadow(0 0 10px #ffffff);
         }
 
         .back-btn {
@@ -164,6 +216,15 @@
             .bio {
                 font-size: 13px;
             }
+
+            .skills-title {
+                font-size: 16px;
+            }
+
+            .skill-tag {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -174,6 +235,21 @@
         <h1 class="name">[OYOUNG]</h1>
         <p class="profession">未来 AI 架构师</p>
         <p class="bio">我正在学习使用 AI 编程，目标是做出最酷的产品。</p>
+        
+        <div class="skills-section">
+            <h3 class="skills-title">我的技能树</h3>
+            <div class="skills-cloud">
+                <span class="skill-tag">AI 产品设计</span>
+                <span class="skill-tag">Prompt Engineering</span>
+                <span class="skill-tag">数据分析</span>
+                <span class="skill-tag">用户研究</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">团队协作</span>
+                <span class="skill-tag">项目管理</span>
+            </div>
+        </div>
+
         <div class="social-buttons">
             <button class="social-btn wechat" onclick="handleSocialClick('wechat')" title="微信">
                 <i class="fab fa-weixin"></i>
