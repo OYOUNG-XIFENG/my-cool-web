@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #0c1445 0%, #1a237e 50%, #0d47a1 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 200, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 100, 150, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(100, 255, 150, 0.1) 0%, transparent 40%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(120, 200, 255, 0.6);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 45%; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 60%; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 75%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 85%; animation-delay: 2.5s; }
+        .particle:nth-child(8) { left: 95%; animation-delay: 4.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .glow-text {
+            font-size: 48px;
+            font-weight: 700;
+            color: #78c8ff;
+            text-shadow: 
+                0 0 10px rgba(120, 200, 255, 0.8),
+                0 0 20px rgba(120, 200, 255, 0.6),
+                0 0 40px rgba(120, 200, 255, 0.4),
+                0 0 80px rgba(120, 200, 255, 0.2);
+            margin-bottom: 60px;
+            animation: textGlow 3s ease-in-out infinite;
+            letter-spacing: 4px;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 
+                0 0 10px rgba(120, 200, 255, 0.8),
+                0 0 20px rgba(120, 200, 255, 0.6),
+                0 0 40px rgba(120, 200, 255, 0.4),
+                0 0 80px rgba(120, 200, 255, 0.2);
+            }
+            50% { text-shadow: 
+                0 0 20px rgba(120, 200, 255, 1),
+                0 0 40px rgba(120, 200, 255, 0.8),
+                0 0 60px rgba(120, 200, 255, 0.6),
+                0 0 100px rgba(120, 200, 255, 0.4);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            position: relative;
+            padding: 24px 64px;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(120, 200, 255, 0.2), rgba(100, 180, 255, 0.1));
+            border: 2px solid rgba(120, 200, 255, 0.5);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 10px 40px rgba(120, 200, 255, 0.3),
+                0 0 30px rgba(120, 200, 255, 0.2);
+            border-color: rgba(120, 200, 255, 0.8);
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:nth-child(1) {
+            background: linear-gradient(135deg, rgba(100, 255, 150, 0.2), rgba(80, 220, 130, 0.1));
+            border-color: rgba(100, 255, 150, 0.5);
+        }
+
+        .nav-btn:nth-child(1):hover {
+            box-shadow: 
+                0 10px 40px rgba(100, 255, 150, 0.3),
+                0 0 30px rgba(100, 255, 150, 0.2);
+            border-color: rgba(100, 255, 150, 0.8);
+        }
+
+        .nav-btn:nth-child(1)::before {
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 150, 0.3), transparent);
+        }
+
+        .nav-btn:nth-child(2) {
+            background: linear-gradient(135deg, rgba(255, 150, 100, 0.2), rgba(255, 120, 80, 0.1));
+            border-color: rgba(255, 150, 100, 0.5);
+        }
+
+        .nav-btn:nth-child(2):hover {
+            box-shadow: 
+                0 10px 40px rgba(255, 150, 100, 0.3),
+                0 0 30px rgba(255, 150, 100, 0.2);
+            border-color: rgba(255, 150, 100, 0.8);
+        }
+
+        .nav-btn:nth-child(2)::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 150, 100, 0.3), transparent);
+        }
+
+        @media (max-width: 480px) {
+            .glow-text {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+
+            .nav-btn {
+                padding: 20px 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <h1 class="glow-text">冯瑶的 AI 探索空间</h1>
+    
+    <div class="buttons-container">
+        <a href="name.html" class="nav-btn">我的名片</a>
+        <a href="game.html" class="nav-btn">猜数字游戏</a>
+    </div>
+</body>
+</html>

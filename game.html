@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00ff00;
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        input[type="number"] {
+            width: 150px;
+            padding: 12px 20px;
+            font-size: 24px;
+            background-color: #000000;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            text-align: center;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            padding: 12px 32px;
+            font-size: 20px;
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #00cc00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+
+        button:disabled {
+            background-color: #666666;
+            color: #999999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 36px;
+            margin-bottom: 20px;
+        }
+
+        #message.too-high {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        #message.too-low {
+            color: #0066ff;
+            text-shadow: 0 0 10px #0066ff;
+        }
+
+        #message.correct {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+        }
+
+        #attempts {
+            color: #00ff00;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>猜数字游戏</h1>
+    <div class="game-container">
+        <div class="input-group">
+            <input type="number" id="guessInput" min="1" max="100" placeholder="1-100">
+            <button id="guessBtn">猜一下</button>
+        </div>
+        <div id="message"></div>
+        <div id="attempts">猜的次数：0</div>
+    </div>
+
+    <script>
+        let secretNumber;
+        let attempts = 0;
+
+        function initGame() {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('attempts').textContent = `猜的次数：${attempts}`;
+            document.getElementById('message').textContent = '';
+            document.getElementById('message').className = '';
+            document.getElementById('guessBtn').disabled = false;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guessInput').focus();
+        }
+
+        function checkGuess() {
+            const input = document.getElementById('guessInput');
+            const guess = parseInt(input.value);
+            
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                alert('请输入1到100之间的数字');
+                input.focus();
+                return;
+            }
+
+            attempts++;
+            document.getElementById('attempts').textContent = `猜的次数：${attempts}`;
+
+            const message = document.getElementById('message');
+            
+            if (guess > secretNumber) {
+                message.textContent = '太大了，再小点';
+                message.className = 'too-high';
+            } else if (guess < secretNumber) {
+                message.textContent = '太小了，再大点';
+                message.className = 'too-low';
+            } else {
+                message.textContent = '恭喜你！猜对了！';
+                message.className = 'correct';
+                document.getElementById('guessBtn').disabled = true;
+            }
+
+            input.value = '';
+            input.focus();
+        }
+
+        document.getElementById('guessBtn').addEventListener('click', checkGuess);
+        
+        document.getElementById('guessInput').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                checkGuess();
+            }
+        });
+
+        window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>
