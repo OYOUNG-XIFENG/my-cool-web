@@ -17,16 +17,18 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #000000;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 20px;
+            background-color: #0f172a;
+            font-family: 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            padding: 8% 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h1 {
-            color: #00ff00;
+            color: #e2e8f0;
             font-size: 36px;
             margin-bottom: 40px;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            text-shadow: 0 0 10px rgba(148, 163, 184, 0.8), 0 0 20px rgba(148, 163, 184, 0.4);
         }
 
         .game-container {
@@ -44,12 +46,18 @@
             width: 150px;
             padding: 12px 20px;
             font-size: 24px;
-            background-color: #000000;
-            border: 2px solid #00ff00;
-            color: #00ff00;
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            color: #e2e8f0;
             text-align: center;
             outline: none;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
         input[type="number"]::-webkit-inner-spin-button,
@@ -61,24 +69,26 @@
         button {
             padding: 12px 32px;
             font-size: 20px;
-            background-color: #00ff00;
-            color: #000000;
+            background-color: rgba(59, 130, 246, 0.8);
+            color: #e2e8f0;
             border: none;
             cursor: pointer;
             font-weight: bold;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
         }
 
         button:hover:not(:disabled) {
-            background-color: #00cc00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            background-color: rgba(59, 130, 246, 1);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
 
         button:disabled {
-            background-color: #666666;
-            color: #999999;
+            background-color: #475569;
+            color: #94a3b8;
             cursor: not-allowed;
+            transform: none;
             box-shadow: none;
         }
 
@@ -90,27 +100,45 @@
         }
 
         #message.too-high {
-            color: #ff0000;
-            text-shadow: 0 0 10px #ff0000;
+            color: #f87171;
         }
 
         #message.too-low {
-            color: #0066ff;
-            text-shadow: 0 0 10px #0066ff;
+            color: #60a5fa;
         }
 
         #message.correct {
-            color: #ffd700;
-            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
         }
 
         #attempts {
-            color: #00ff00;
+            color: #e2e8f0;
             font-size: 18px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(148, 163, 184, 0.2);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-btn">← 返回首页</a>
     <h1>猜数字游戏</h1>
     <div class="game-container">
         <div class="input-group">
